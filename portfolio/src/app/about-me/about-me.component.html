@@ -3,7 +3,7 @@
   <img [src]="profileImageSrc" alt="picture of me"
     class=" mx-auto lg:mx-0 rounded-full lg:my-auto lg:row-span-1 row-span-2 aspect-square lg:p-0 p-[2vh]   " />
   <div class="lg:col-span-3 mx-5 lg:my-auto">
-    <p class="font-bold lg:text-7xl leading-normal text-5xl text-center mb-6 lg:text-left   lg:pl-[4vw]" id="introText">
+    <p class="font-bold lg:text-7xl leading-normal text-5xl text-center mb-6    lg:pl-[4vw]" id="introText">
       @for(eachChar of introTextPreAnimation; track $index){<span [id]="'introSpans-'+$index"
         class="transition-all ease-in text-background w-fit h-fit duration-[1.0s] m-0 border-0 ">{{eachChar}}</span>}
     </p>
