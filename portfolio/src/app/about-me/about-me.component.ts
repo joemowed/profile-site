@@ -10,7 +10,7 @@ import { octMarkGithub } from '@ng-icons/octicons';
   viewProviders: [provideIcons({ octMarkGithub })]
 })
 export class AboutMeComponent implements OnInit {
-  readonly profileImageSrc = "../../assets/dummyProfileImage.webp"
+  readonly profileImageSrc = "../../assets/profile-square.jpg"
   readonly introTextPreAnimation = "Welcome, I'm Joe Maloney"
   readonly introTextDelay = 70;
   public introText: string = "";
