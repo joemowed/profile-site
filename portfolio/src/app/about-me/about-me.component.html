@@ -1,7 +1,7 @@
 <div
   class="grid lg:grid-cols-4 grid-cols-1 grid-rows-2 gap-8 lg:grid-rows-1  lg:h-[40vh] m-0 items-center lg:mt-[10vh] lg:mx-[10vw] ">
   <img [src]="profileImageSrc" alt="picture of me"
-    class=" mx-auto lg:mx-0 rounded-full lg:my-auto lg:row-span-1 row-span-2 aspect-square p-[2vw]    " />
+    class=" mx-auto lg:mx-0 rounded-full lg:my-auto lg:row-span-1 row-span-2 aspect-square lg:p-0 p-[2vh]   " />
   <div class="lg:col-span-3 mx-5 lg:my-auto">
     <p class="font-bold lg:text-7xl leading-normal text-5xl text-center mb-6 lg:text-left   lg:pl-[4vw]" id="introText">
       @for(eachChar of introTextPreAnimation; track $index){<span [id]="'introSpans-'+$index"
