@@ -7,13 +7,33 @@
       @for(eachChar of introTextPreAnimation; track $index){<span [id]="'introSpans-'+$index"
         class="transition-all ease-in text-background w-fit h-fit duration-[1.0s] m-0 border-0 ">{{eachChar}}</span>}
     </p>
-
-    <p class="text-2xl text-center h-fit w-fit mx-5 ">
-      A serial learner, I've amassed skills and knowledge inside and outside the classroom. I aim to leverage my
-      knowledge
-      in computing and electrical design to solve real world problems and build <span
-        class="text-accent font-semibold">winning</span>
-      products.
-    </p>
+    <div>
+      <p class="text-2xl text-center h-fit w-fit mx-5 ">
+        A serial learner, I've amassed skills and knowledge inside and outside the classroom. I aim to leverage my
+        knowledge
+        in computing and electrical design to solve real world problems and build <span
+          class="text-accent font-semibold">winning</span>
+        products.
+      </p>
+      <div class="grid w-fit mx-auto gap-2 lg:gap-[3vw] h-[10vh] py-5 grid-flow-col place-items-center">
+        <svg class="h-[80%] cursor-pointer rounded-full hover:bg-secondary/30 hover:shadow-lg"
+          (click)="openLink('github.com/joemowed')" viewBox="0 -0.5 24 24" id="meteor-icon-kit__solid-github"
+          fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M12.2047 0.00001C6.56031 -0.005731 1.74628 4.08615 0.842541 9.6577C-0.061195 15.2293 3.2126 20.6331 8.56941 22.4118C9.14823 22.5177 9.35294 22.1577 9.35294 21.8541C9.35294 21.5506 9.35294 20.8588 9.35294 19.8988C6.14117 20.5977 5.46353 18.3529 5.46353 18.3529C5.25046 17.6572 4.79779 17.0595 4.18588 16.6659C3.14823 15.96 4.27059 15.96 4.27059 15.96C5.00761 16.0641 5.65578 16.5014 6.02823 17.1459C6.34368 17.7179 6.87393 18.1406 7.50179 18.3208C8.12965 18.5009 8.8034 18.4236 9.37411 18.1059C9.41842 17.5252 9.66876 16.9794 10.08 16.5671C7.5247 16.2777 4.84235 15.2894 4.84235 10.92C4.82481 9.7786 5.24688 8.67412 6.02117 7.8353C5.67632 6.84285 5.71662 5.7571 6.13412 4.79295C6.13412 4.79295 7.10117 4.48236 9.29647 5.97177C11.1816 5.45419 13.1713 5.45419 15.0565 5.97177C17.2518 4.48236 18.2118 4.79295 18.2118 4.79295C18.6351 5.74689 18.6854 6.82486 18.3529 7.81412C19.1272 8.65294 19.5493 9.7574 19.5318 10.8988C19.5318 15.3177 16.8424 16.2847 14.28 16.5459C14.8359 17.1047 15.1218 17.8774 15.0635 18.6635C15.0635 20.2024 15.0635 21.4447 15.0635 21.8188C15.0635 22.1929 15.2682 22.4824 15.8541 22.3694C21.1473 20.5447 24.3569 15.1728 23.4554 9.6469C22.5539 4.1211 17.8034 0.04779 12.2047 0.00001z"
+            fill="#c0dafc" />
+        </svg>
+        <svg (click)="openLink('jgmalo01@louisville.edu',true)" xmlns="http://www.w3.org/2000/svg"
+          class=" rounded-lg  h-[80%] cursor-pointer  hover:bg-secondary/30 hover:shadow-lg" viewBox="0 0 512 512">
+          <g>
+            <path class="stroke-secondary fill-secondary "
+              d="M510.678,112.275c-2.308-11.626-7.463-22.265-14.662-31.054c-1.518-1.915-3.104-3.63-4.823-5.345   c-12.755-12.818-30.657-20.814-50.214-20.814H71.021c-19.557,0-37.395,7.996-50.21,20.814c-1.715,1.715-3.301,3.43-4.823,5.345   C8.785,90.009,3.63,100.649,1.386,112.275C0.464,116.762,0,121.399,0,126.087V385.92c0,9.968,2.114,19.55,5.884,28.203   c3.497,8.26,8.653,15.734,14.926,22.001c1.59,1.586,3.169,3.044,4.892,4.494c12.286,10.175,28.145,16.32,45.319,16.32h369.958   c17.18,0,33.108-6.145,45.323-16.384c1.718-1.386,3.305-2.844,4.891-4.43c6.27-6.267,11.425-13.741,14.994-22.001v-0.064   c3.769-8.653,5.812-18.171,5.812-28.138V126.087C512,121.399,511.543,116.762,510.678,112.275z M46.509,101.571   c6.345-6.338,14.866-10.175,24.512-10.175h369.958c9.646,0,18.242,3.837,24.512,10.175c1.122,1.129,2.179,2.387,3.112,3.637   L274.696,274.203c-5.348,4.687-11.954,7.002-18.696,7.002c-6.674,0-13.276-2.315-18.695-7.002L43.472,105.136   C44.33,103.886,45.387,102.7,46.509,101.571z M36.334,385.92V142.735L176.658,265.15L36.405,387.435   C36.334,386.971,36.334,386.449,36.334,385.92z M440.979,420.597H71.021c-6.281,0-12.158-1.651-17.174-4.552l147.978-128.959   l13.815,12.018c11.561,10.046,26.028,15.134,40.36,15.134c14.406,0,28.872-5.088,40.432-15.134l13.808-12.018l147.92,128.959   C453.137,418.946,447.26,420.597,440.979,420.597z M475.666,385.92c0,0.529,0,1.051-0.068,1.515L335.346,265.221L475.666,142.8   V385.92z" />
+          </g>
+        </svg>
+        <p (click)="dlResume()"
+          class=" px-4 py-2 bg-secondary hover:bg-secondary/80 hover:shadow-lg cursor-pointer text-center w-fit h-fit font-bold text-md lg:text-xl active:bg-secondary/40 rounded-lg">
+          Resume</p>
+      </div>
+    </div>
   </div>
 </div>

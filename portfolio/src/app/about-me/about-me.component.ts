@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core'
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { octMarkGithub } from '@ng-icons/octicons';
 @Component({
   selector: 'app-about-me',
   standalone: true,
-  imports: [],
+  imports: [NgIconComponent],
   templateUrl: './about-me.component.html',
-  styleUrl: './about-me.component.css'
+  styleUrl: './about-me.component.css',
+  viewProviders: [provideIcons({ octMarkGithub })]
 })
 export class AboutMeComponent implements OnInit {
   readonly profileImageSrc = "../../assets/dummyProfileImage.webp"
@@ -34,5 +36,15 @@ export class AboutMeComponent implements OnInit {
         clearInterval(interval)
       }
     }, this.introTextDelay)
+  }
+  openLink(url: string, mailto: boolean = false) {
+    if (mailto) {
+      window.open(('mailto://' + url), "_blank")
+      return
+    }
+    window.open(('https://' + url), "_blank");
+  }
+  dlResume() {
+    window.open('../../assets/Resume-Joe-Maloney.pdf')
   }
 }
