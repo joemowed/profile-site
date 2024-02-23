@@ -1,0 +1,4 @@
+<img [ngClass]="{'regImgPreloaded':isLoaded,'regImgLoaded':!isLoaded}" [src]="quickSrc" alt="lazy image alt text"
+  [attr.width]="width" [attr.height]="height" loading="{{(isLazy)?'lazy':'eager'" class="{{imgClass}}" />
+<img [ngClass]="{'regImgPreloaded':!isLoaded,'regImgLoaded':isLoaded}" [attr.width]="width" [attr.height]="height"
+  (load)="isLoaded =true" [src]=" src" alt="lazy image alt text" loading="lazy" class="{{imgClass}}" />

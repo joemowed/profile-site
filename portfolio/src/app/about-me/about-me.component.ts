@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core'
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { octMarkGithub } from '@ng-icons/octicons';
+import { ImgComponent } from '../img/img.component';
+import { NgOptimizedImage } from '@angular/common';
+import { ProgressiveImageLoaderDirective } from '../progressive-image.directive';
 @Component({
   selector: 'app-about-me',
   standalone: true,
-  imports: [NgIconComponent],
+  imports: [NgIconComponent, ProgressiveImageLoaderDirective],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.css',
   viewProviders: [provideIcons({ octMarkGithub })]
 })
 export class AboutMeComponent implements OnInit {
   readonly profileImageSrc = "../../assets/portrat-comp.jpg"
+  readonly profileImageSrcQ = "../../assets/portrat-comp-q.png"
   readonly introTextPreAnimation = "Welcome, I'm Joe Maloney"
   readonly introTextDelay = 70;
   public introText: string = "";

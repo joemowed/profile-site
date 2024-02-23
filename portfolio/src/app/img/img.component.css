@@ -1,0 +1,12 @@
+.regImgPreloaded {
+  visibility: hidden;
+  position: absolute;
+  place-self: center;
+
+}
+
+.regImgLoaded {
+
+  position: absolute;
+  place-self: center;
+}
