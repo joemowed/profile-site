@@ -1,0 +1,43 @@
+<div class="bg-secondary  w-screen relative  h-fit lg:h-[70vh]">
+  <div class=" h-fit lg:h-[13vh] bg-primary  lg:grid grid-rows-2 grid-cols-1 place-items-center gap-4">
+    <p class="font-bold pt-5 lg:text-5xl text-4xl text-center my-5 lg:my-0  ">Applied Experience</p>
+    <div class="grid grid-flow-row lg:grid-flow-col grid-rows-1 w-full place-items-center h-full ">
+      @if(!isMobile){
+      @for(each of projects; track each){
+      <div [id]="each.heading" (click)="changeActive(each.heading)"
+        class="w-full h-full hover:bg-white/30 grid grid-rows-1 lg:border-l-4  border-secondary grid-cols-1 duration-75  transition  place-items-center"
+        [ngClass]="(activeProject == each.heading )?'bg-secondary':'bg-white/0'" (mouseenter)="inHeading(each.heading)"
+        (mouseleave)="outHeading(each.heading)">
+        <p class=" select-none lg:py-0 py-4 font-semibold text-3xl text-center    my-auto transition duration-75 ">
+          {{each.heading}}</p>
+      </div>
+      }
+      }
+      @else{
+      <p class="select-none lg:py-0 py-4 font-semibold text-3xl text-center    my-auto transition duration-75 ">
+        {{activeProject}}</p>
+      <p (click)="showMenu()"
+        class="select-none lg:py-0 py-px font-semibold text-2xl text-center rounded-lg bg-accent/90 text-white w-[80vw] mb-4    my-auto transition duration-75 ">
+        {{(menuActive)?'Close':'See More'}}
+      </p>
+      }
+    </div>
+
+  </div>
+  <div class="scale-y-0 z-10 h-0  transition " [ngClass]="(menuActive)?'scale-y-100 ':'scale-y-0'">
+    @for(each of projects; track each){
+    <p [ngClass]="(each.heading == activeProject)?'bg-secondary/90':'bg-primary/90'"
+      (click)="changeActive(each.heading)" class="text-center text-3xl border-t-2 border-secondary bg-primary/90 py-2">
+      {{each.heading}}</p>
+    }
+
+  </div>
+
+  @for(each of projects; track each){
+  @if(each.heading == activeProject){
+  <app-project [project]="each"></app-project>
+
+  }
+  }
+
+</div>

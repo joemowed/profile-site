@@ -1,0 +1,43 @@
+@for(each of project.card; track each){
+@if(each.description == activeCardDesc ){
+<div class="grid grid-flow-row  select-none  lg:grid-rows-1 lg:grid-cols-2  place-items-center h-[92vh] lg:h-[52vh]">
+  <img [ProgImage]=""
+    class=" aspect-square  lg:p-[2vh] lg:max-h-full max-h-[40vh] max-w-[40vh]  lg:max-w-full w-full p-0 lg:pl-0   lg:w-auto   "
+    [src]="each.imageRelUrl" />
+  <div class="grid place-self-start grid-flow-col  lg:h-full w-full lg:w-[88%] ">
+    <div (click)="changeViaLeftArrow()"
+      class="hover:bg-white/20 active:bg-white/30 max-w-14 h-full grid place-items-center">
+      <img src="../../../assets/leftArrow.svg" class="m-auto " />
+    </div>
+    <div class="w-full lg:mt-[12vh]  ">
+      <p class="text-3xl text-center font-semibold mx-auto mt-4 lg:mb-[8vh]">{{each.subheading}}</p>
+      <p class="text-xl lg:text-2xl text-center mx-auto mt-4 lg:px-4">{{each.description}}</p>
+    </div>
+    <div (click)="changeViaRightArrow()"
+      class="hover:bg-white/20 place-self-end h-full active:bg-white/30   max-w-14 grid place-items-center">
+      <img src="../../../assets/rightArrow.svg" class="m-auto " />
+    </div>
+
+  </div>
+</div>
+}
+}
+<div class="h-[5vh] bg-accent w-full grid select-none grid-rows-1 grid-cols-1 place-items-center">
+  <div class="w-fit grid grid-flow-col gap-2 place-items-center h-full lg:gap-4">
+    @for(each of project.card; track each){
+    @if(activeCardDesc == each.description){
+    <svg (click)="changeActiveCard(each.description)" class="fill-primary/80  h-[80%] w-fit " width="800px"
+      height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="16" />
+    </svg>
+    }
+    @else{
+    <svg (click)="changeActiveCard(each.description)"
+      class="fill-secondary/80 h-[80%] w-fit hover:fill-secondary/60 my-auto" width="800px" height="800px"
+      viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="16" />
+    </svg>
+    }}
+
+  </div>
+</div>
