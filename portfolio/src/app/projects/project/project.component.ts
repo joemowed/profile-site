@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProjectComponent implements OnInit {
   @Input({ required: true }) project!: Project;
+  @Input({ required: true }) isMobile!: boolean;
   activeCardDesc?: string
   constructor() {
   }

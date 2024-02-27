@@ -35,7 +35,7 @@
 
   @for(each of projects; track each){
   @if(each.heading == activeProject){
-  <app-project [project]="each"></app-project>
+  <app-project [project]="each" [isMobile]="isMobile"></app-project>
 
   }
   }

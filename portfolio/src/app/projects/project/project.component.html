@@ -5,16 +5,16 @@
     class=" aspect-square  lg:p-[2vh] lg:max-h-full max-h-[40vh] max-w-[40vh]  lg:max-w-full w-full p-0 lg:pl-0   lg:w-auto   "
     [src]="each.imageRelUrl" />
   <div class="grid place-self-start grid-flow-col  lg:h-full w-full lg:w-[88%] ">
-    <div (click)="changeViaLeftArrow()"
-      class="hover:bg-white/20 active:bg-white/30 max-w-14 h-full grid place-items-center">
+    <div [ngClass]="!isMobile?'hover:bg-white/20':''" (click)="changeViaLeftArrow()"
+      class=" active:bg-white/30 max-w-14 h-full grid place-items-center">
       <img src="../../../assets/leftArrow.svg" class="m-auto " />
     </div>
     <div class="w-full lg:mt-[12vh]  ">
       <p class="text-3xl text-center font-semibold mx-auto mt-4 lg:mb-[8vh]">{{each.subheading}}</p>
       <p class="text-xl lg:text-2xl text-center mx-auto mt-4 lg:px-4">{{each.description}}</p>
     </div>
-    <div (click)="changeViaRightArrow()"
-      class="hover:bg-white/20 place-self-end h-full active:bg-white/30   max-w-14 grid place-items-center">
+    <div (click)="changeViaRightArrow()" [ngClass]="!isMobile?'hover:bg-white/20':''"
+      class=" place-self-end h-full active:bg-white/30   max-w-14 grid place-items-center">
       <img src="../../../assets/rightArrow.svg" class="m-auto " />
     </div>
 
