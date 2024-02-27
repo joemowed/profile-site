@@ -13,24 +13,6 @@ export class ProjectsComponent implements OnInit {
 
   readonly projects: Project[] = [
     {
-      heading: 'Subsciber Counter',
-      card: [{
-        subheading: 'page 1',
-        description: 'desc uno',
-        imageRelUrl: '../../assets/fpga-q.png'
-
-      }
-
-        , {
-        subheading: 'page 2',
-        description: 'desc dos',
-        imageRelUrl: '../../assets/fpga-q.png'
-
-      }
-
-
-      ]
-    }, {
       heading: 'FPGA Dev Board',
       card: [{
         subheading: 'Purpose',
@@ -49,25 +31,6 @@ export class ProjectsComponent implements OnInit {
       }
       ]
     },
-    {
-      heading: 'Subsciber Couter',
-      card: [{
-        subheading: 'page 1',
-        description: 'desc uno',
-        imageRelUrl: '../../assets/fpga-q.png'
-
-      }]
-    }, {
-      heading: 'Suber Counter',
-      card: [{
-        subheading: 'page 1',
-        description: 'desc uno',
-        imageRelUrl: '../../assets/fpga-q.png'
-
-      }]
-    }
-
-
 
 
   ]
