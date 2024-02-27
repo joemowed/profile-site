@@ -22,7 +22,7 @@
 </div>
 }
 }
-<div class="h-[5vh] bg-accent w-full grid select-none grid-rows-1 grid-cols-1 place-items-center">
+<div class="h-[5vh] bg-secondary w-full grid select-none grid-rows-1 grid-cols-1 place-items-center">
   <div class="w-fit grid grid-flow-col gap-2 place-items-center h-full lg:gap-4">
     @for(each of project.card; track each){
     @if(activeCardDesc == each.description){
@@ -33,7 +33,7 @@
     }
     @else{
     <svg (click)="changeActiveCard(each.description)"
-      class="fill-secondary/80 h-[80%] w-fit hover:fill-secondary/60 my-auto" width="800px" height="800px"
+      class="fill-primary/30 h-[80%] w-fit hover:fill-secondary/60 my-auto" width="800px" height="800px"
       viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
       <circle cx="16" cy="16" r="16" />
     </svg>
