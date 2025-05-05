@@ -9,6 +9,7 @@
     --color-eerie: #1d1d1d;
     --font-inter: "Inter";
     --font-dosis: "Dosis";
+    --breakpoint-lg: 64rem;
 }
 
 .gentle_timber_button {
