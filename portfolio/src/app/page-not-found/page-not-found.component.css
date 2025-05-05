@@ -1,0 +1,16 @@
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(80%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animateTXT {
+  animation: 1s ease-out     0s 1 slideInFromBottom;
+
+}

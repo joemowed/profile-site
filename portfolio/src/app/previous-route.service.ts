@@ -4,26 +4,21 @@ import { NavigationEnd, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class PreviousRouteService {
+export class PageNotFoundRouteService {
 
-  private prevURL: string = "";
-  private currURL: string = "";
+  private attemptedURL: string = "";
 
   constructor(private router: Router) {
-    this.currURL = this.router.url;
+    this.attemptedURL = this.router.url;
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.prevURL = this.currURL;
-        this.currURL = event.url;
+        this.attemptedURL = event.url;
       }
     });
   }
 
-  public getPreviousURL(): string {
-    return this.prevURL;
-  }
 
-  public getCurrentURL(): string {
-    return this.currURL;
+  public getAttemptedURL(): string {
+    return this.attemptedURL;
   }
 }

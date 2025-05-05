@@ -1,1 +1,25 @@
-<p>page-not-found works!</p>
+<div class="m-auto  max-w-4/5 w-fit  mt-[30vh]  flex lg:flex-row flex-col">
+    <div class="my-auto lg:mr-[10%]">
+        <p
+            class="lg:text-7xl text-5xl mb-10  tracking-wider font-inter font-semibold font text-gold lg:text-left text-center">
+            Sorry</p>
+        <span class="lg:text-xl  tracking-wider font-inter font-semibold font text-gold ">
+            @if(show_attempted_url){
+            <p class="attempted_text">The page
+                <span class="italic font-light"><br>{{attempted_url}}<br></span>
+                can not be found.
+            </p>
+            }
+            @else{
+            <p>The page you requested can not be found.</p>
+            }
+        </span>
+        <p routerLink="/home"
+            class="text-white text-xl italic  mt-5 rounded-2xl bg-timber/10 w-fit p-1 select-none px-2 border-timber/20 border-2 text-center hover:text-timber hover:bg-timber/30 active:text-white">
+            Click here
+            to
+            return to the
+            homepage</p>
+    </div>
+    <img class="max-h-[30vh] lg:mt-0 mt-10 ml-auto animateTXT" src="page-not-found/shock-warning.svg" />
+</div>
