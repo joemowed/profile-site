@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { PageNotFoundRouteService } from '../previous-route.service';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { PageNotFoundRouteService } from "../previous-route.service";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
-    selector: 'app-page-not-found',
+    selector: "app-page-not-found",
     imports: [RouterLink],
-    templateUrl: './page-not-found.component.html',
-    styleUrl: './page-not-found.component.css'
+    templateUrl: "./page-not-found.component.html",
+    styleUrl: "./page-not-found.component.css",
 })
 export class PageNotFoundComponent {
-
-
     protected attempted_url: string = "";
     protected show_attempted_url: boolean = true;
     readonly MAX_URL_DISPLAY_LENGTH = 60;
 
-    constructor(private pnfRoute: PageNotFoundRouteService, private router: Router) {
-    }
+    constructor(
+        private pnfRoute: PageNotFoundRouteService,
+        private router: Router,
+    ) {}
 
     ngOnInit() {
         const current_route = this.router.url;
