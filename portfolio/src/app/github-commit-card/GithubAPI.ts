@@ -1,16 +1,19 @@
+import moment from "moment";
 export class GithubAPI {
+    public gh_api_json: githubAPIJSON = {};
     readonly gh_api_base_url: string = "https://api.github.com";
     readonly user_events_url = this.gh_api_base_url + "/users/joemowed/events";
     readonly GH_API_MAX_RETRIES = 5;
     private commit_number: number = 0;
 
-    public user_events_json: JSON[] = [];
+    private user_events_json: JSON[] = [];
     private user_events_fetch_pending: boolean = false;
     private user_events_retry_count: number = 0;
 
-    public commit_json: any;
+    private commit_json: any;
     private commit_fetch_pending: boolean = false;
     private commit_retry_count: number = 0;
+    private repo_name: string = ""; //
 
     constructor(commit_number: number) {
         this.commit_number = commit_number;
@@ -70,7 +73,21 @@ export class GithubAPI {
                 this.user_events_json[this.commit_number],
                 0,
             );
-            fetch;
+            this.commit_fetch_pending = true;
+            fetch(commit_fetch_url)
+                .then((response) =>
+                    response.json().then((data) => {
+                        this.commit_json = data;
+                        this.gh_api_json = this.generateAPIJSON();
+                    }),
+                )
+                .catch((err) => {
+                    console.error("Commit fetch error", err);
+                    this.commit_retry_count++;
+                })
+                .finally(() => {
+                    this.commit_fetch_pending = false;
+                });
         }
     }
     private generateCommitFetchURL(
@@ -78,9 +95,27 @@ export class GithubAPI {
         payload_commit: number,
     ): string {
         let ret = this.gh_api_base_url + "/repos";
+        this.repo_name = push_event_json.repo.name;
         ret += "/" + push_event_json.repo.name;
         ret += "/commits";
         ret += "/" + push_event_json.payload.commits[payload_commit].sha;
+        console.log(ret);
+        return ret;
+    }
+    private generateAPIJSON(): githubAPIJSON {
+        let ret = {} as githubAPIJSON;
+        ret.additions = this.commit_json.stats.additions;
+        ret.deletions = this.commit_json.stats.deletions;
+        ret.github_url =
+            "https://github.com/" +
+            this.repo_name +
+            "/commit/" +
+            this.commit_json.sha;
+        let commit_moment = moment.utc(this.commit_json.commit.author.date);
+        let now_moment = moment.utc();
+        let duration = moment.duration(now_moment.diff(commit_moment));
+        ret.date = commit_moment.format("dddd, MMMM Do, h:mm a");
+        ret.time_elapsed = duration.humanize();
         console.log(ret);
         return ret;
     }
@@ -90,6 +125,6 @@ export interface githubAPIJSON {
     additions?: number;
     deletions?: number;
     date?: string;
-    time?: string;
-    timeElapsed?: string;
+    time_elapsed?: string;
+    github_url?: string;
 }
