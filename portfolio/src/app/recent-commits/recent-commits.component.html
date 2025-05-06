@@ -1,0 +1,17 @@
+<div class="most_recent_commits_bg grid items-center">
+    <div
+        class="mx-auto my-4 flex flex-col items-center gap-6 lg:grid lg:w-2/3 lg:grid-cols-2 lg:grid-rows-2"
+    >
+        <div class="font-inter text-center">
+            <p class="text-gold py-4 text-center text-4xl font-bold lg:pt-10">
+                Most recent commits
+            </p>
+            <p class="text-lg text-white">
+                Projects that I have been working on most recently.
+            </p>
+        </div>
+        <app-github-commit-card [commit_number]="0"></app-github-commit-card>
+        <app-github-commit-card [commit_number]="1"></app-github-commit-card>
+        <app-github-commit-card [commit_number]="2"></app-github-commit-card>
+    </div>
+</div>

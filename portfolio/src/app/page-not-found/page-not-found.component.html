@@ -1,0 +1,33 @@
+<div
+    class="font-inter mx-auto mt-[30vh] flex w-fit max-w-4/5 flex-col lg:flex-row"
+>
+    <div class="my-auto lg:mr-[10%]">
+        <p
+            class="font-inter font text-gold mb-10 text-center text-5xl font-semibold tracking-wider lg:text-left lg:text-7xl"
+        >
+            Sorry
+        </p>
+        <span
+            class="font-inter font text-gold font-semibold tracking-wider lg:text-xl"
+        >
+            @if (show_attempted_url) {
+                <p class="attempted_text">
+                    The page
+                    <span class="font-light italic"
+                        ><br />{{ attempted_url }}<br
+                    /></span>
+                    can not be found.
+                </p>
+            } @else {
+                <p>The page you requested can not be found.</p>
+            }
+        </span>
+        <p routerLink="/home" class="gentle_timber_button">
+            Click here to return to the homepage
+        </p>
+    </div>
+    <img
+        class="animate_shock_image mt-10 ml-auto h-[20vh] w-[17vh] lg:mt-0"
+        src="page-not-found/shock-warning.svg"
+    />
+</div>

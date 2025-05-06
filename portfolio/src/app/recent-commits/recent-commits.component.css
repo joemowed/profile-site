@@ -1,0 +1,7 @@
+.most_recent_commits_bg {
+    background: linear-gradient(
+        50deg,
+        rgba(218, 210, 216, 0.1) 50%,
+        rgba(218, 210, 216, 0) 50%
+    );
+}
