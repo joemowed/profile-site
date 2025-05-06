@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { GithubAPI } from "./GithubAPI";
+import { Component, Input, numberAttribute } from "@angular/core";
+import { GithubAPI, BoxColors } from "./GithubAPI";
 
 @Component({
     selector: "app-github-commit-card",
@@ -8,9 +8,16 @@ import { GithubAPI } from "./GithubAPI";
     styleUrl: "./github-commit-card.component.css",
 })
 export class GithubCommitCardComponent {
-    private gh: GithubAPI;
-    @Input() commit_number: number = 0;
+    public gh: GithubAPI;
+    public readonly red = BoxColors.red;
+    public readonly green = BoxColors.red;
+    @Input({ required: true, transform: numberAttribute })
+    commit_number!: number;
+
     constructor() {
-        this.gh = new GithubAPI(this.commit_number);
+        this.gh = new GithubAPI(this.commit_number, 5);
+    }
+    ngOnInit() {
+        this.gh = new GithubAPI(this.commit_number, 5);
     }
 }

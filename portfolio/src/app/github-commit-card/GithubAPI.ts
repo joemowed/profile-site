@@ -5,6 +5,7 @@ export class GithubAPI {
     readonly user_events_url = this.gh_api_base_url + "/users/joemowed/events";
     readonly GH_API_MAX_RETRIES = 5;
     private commit_number: number = 0;
+    private box_count: number = 0;
 
     private user_events_json: JSON[] = [];
     private user_events_fetch_pending: boolean = false;
@@ -15,10 +16,12 @@ export class GithubAPI {
     private commit_retry_count: number = 0;
     private repo_name: string = ""; //
 
-    constructor(commit_number: number) {
+    constructor(commit_number: number, box_count: number) {
+        this.box_count = box_count;
         this.commit_number = commit_number;
         this.fetchUserEvents();
     }
+
     public fetchUserEvents() {
         if (this.user_events_json.length != 0) {
             console.log(this.user_events_json);
@@ -47,13 +50,14 @@ export class GithubAPI {
                 });
         }
     }
+
     private filterUserEvents(data: any) {
         return data.filter((element: any) => {
             return element.type == "PushEvent";
         });
     }
+
     private fetchCommit() {
-        console.log(this.user_events_json);
         if (this.commit_json) {
             return;
         }
@@ -90,6 +94,7 @@ export class GithubAPI {
                 });
         }
     }
+
     private generateCommitFetchURL(
         push_event_json: any,
         payload_commit: number,
@@ -99,13 +104,15 @@ export class GithubAPI {
         ret += "/" + push_event_json.repo.name;
         ret += "/commits";
         ret += "/" + push_event_json.payload.commits[payload_commit].sha;
-        console.log(ret);
         return ret;
     }
+
     private generateAPIJSON(): githubAPIJSON {
         let ret = {} as githubAPIJSON;
-        ret.additions = this.commit_json.stats.additions;
-        ret.deletions = this.commit_json.stats.deletions;
+        const additions = this.commit_json.stats.additions;
+        const deletions = this.commit_json.stats.deletions;
+        ret.additions = additions;
+        ret.deletions = deletions;
         ret.github_url =
             "https://github.com/" +
             this.repo_name +
@@ -116,15 +123,46 @@ export class GithubAPI {
         let duration = moment.duration(now_moment.diff(commit_moment));
         ret.date = commit_moment.format("dddd, MMMM Do, h:mm a");
         ret.time_elapsed = duration.humanize();
-        console.log(ret);
+        ret.name = this.commit_json.sha.slice(0, 7);
+        ret.repo_name = this.repo_name;
+        ret.box_colors = this.generateBoxColors(additions, deletions);
         return ret;
     }
+    private generateBoxColors(
+        additions: number,
+        deletions: number,
+    ): BoxColors[] {
+        let ret = [] as BoxColors[];
+        let total = 1;
+        const portion = 1 / this.box_count;
+        let compare = additions / (additions + deletions);
+        if (compare > 0) {
+            if (compare < portion) {
+                compare = portion;
+            }
+        }
+        for (let i = 0; i < this.box_count; i++) {
+            if (total >= compare) {
+                ret.push(BoxColors.green);
+            } else {
+                ret.push(BoxColors.red);
+            }
+            total -= portion;
+        }
+        return ret.reverse();
+    }
 }
-
+export enum BoxColors {
+    red,
+    green,
+}
 export interface githubAPIJSON {
     additions?: number;
     deletions?: number;
     date?: string;
     time_elapsed?: string;
     github_url?: string;
+    name?: string;
+    repo_name?: string;
+    box_colors?: BoxColors[];
 }
