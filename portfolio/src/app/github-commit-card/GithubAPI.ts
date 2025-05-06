@@ -126,6 +126,9 @@ export class GithubAPI {
         ret.name = this.commit_json.sha.slice(0, 7);
         ret.repo_name = this.repo_name;
         ret.box_colors = this.generateBoxColors(additions, deletions);
+        const max_message_length = 30;
+        if (this.commit_json.message.length > max_message_length)
+            ret.message = this.commit_json.message.slice(0, max_message_length);
         return ret;
     }
     private generateBoxColors(
@@ -165,4 +168,5 @@ export interface githubAPIJSON {
     name?: string;
     repo_name?: string;
     box_colors?: BoxColors[];
+    message?: string;
 }

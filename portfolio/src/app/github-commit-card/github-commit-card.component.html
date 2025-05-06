@@ -1,31 +1,46 @@
-<div class="font-inter bg-timber mx-auto my-4 lg:w-[40rem]">
-    <p class="text-center"></p>
-    <p class="font-inter text-center text-2xl font-bold">
-        {{ gh.gh_api_json.repo_name }}
-    </p>
-    <p class="text-center text-xl">
-        {{ gh.gh_api_json.date }}
-        <span class="italic">({{ gh.gh_api_json.time_elapsed }} ago)</span>
-    </p>
-    <div class="flex">
-        <p class="ml-auto text-xl font-bold text-green-500">
-            +{{ gh.gh_api_json.additions }}
+<div
+    class="fade-in font-inter bg-timber mx-auto flex min-h-[10rem] w-full flex-col items-center rounded-lg py-4"
+>
+    @if (gh.gh_api_json.name) {
+        <p class="text-center"></p>
+        <p class="font-inter text-center text-2xl font-bold">
+            {{ gh.gh_api_json.repo_name }}
         </p>
-        <div class="mx-2 grid h-[2rem] w-[10rem] grid-cols-5">
-            @for (box of gh.gh_api_json.box_colors; track $index) {
-                @if (box == green) {
-                    <div class="h-[85%] w-[85%] rounded bg-green-500"></div>
-                } @else {
-                    <div class="h-[85%] w-[85%] rounded bg-red-500"></div>
+        <p class="text-center text-xl">
+            {{ gh.gh_api_json.date }}
+            <span class="italic">({{ gh.gh_api_json.time_elapsed }} ago)</span>
+        </p>
+        <div class="flex">
+            <p class="ml-auto text-xl font-bold text-green-500">
+                +{{ gh.gh_api_json.additions }}
+            </p>
+            <div class="mx-2 grid h-[2rem] w-[10rem] grid-cols-5">
+                @for (box of gh.gh_api_json.box_colors; track $index) {
+                    @if (box == green) {
+                        <div class="h-[85%] w-[85%] rounded bg-green-500"></div>
+                    } @else {
+                        <div class="h-[85%] w-[85%] rounded bg-red-500"></div>
+                    }
                 }
-            }
+            </div>
+            <p class="mr-auto text-xl font-bold text-red-600">
+                -{{ gh.gh_api_json.deletions }}
+            </p>
         </div>
-        <p class="mr-auto text-xl font-bold text-red-600">
-            -{{ gh.gh_api_json.deletions }}
+        <!-- <p class="mx-auto text-center text-xl italic"> -->
+        <!--     Commit: {{ gh.gh_api_json.name }} -->
+        <!-- </p> -->
+        <p class="mx-auto text-center text-lg italic">
+            {{ gh.gh_api_json.message }}
         </p>
-    </div>
-    <p class="mr-auto ml-4 text-center text-xl italic">
-        Commit: {{ gh.gh_api_json.name }}
-    </p>
-    <a class="mx-auto text-2xl">View on GitHub</a>
+        <a
+            class="slick_gold_button text-2xl"
+            href="{{ gh.gh_api_json.github_url }}"
+            >View on GitHub</a
+        >
+    } @else {
+        <p class="m-auto text-2xl font-light italic">
+            GitHub info currently unavailable
+        </p>
+    }
 </div>

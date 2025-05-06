@@ -15,3 +15,72 @@
 .gentle_timber_button {
     @apply bg-timber/10 border-timber/20 hover:text-timber hover:bg-timber/30 mt-5 w-fit rounded-2xl border-2 p-1 px-2 text-center text-white italic select-none active:text-white;
 }
+
+@property --gold_button_bg_position_x {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 10%;
+}
+
+.slick_gold_button {
+    background: linear-gradient(
+        120deg,
+        var(--color-canary) var(--gold_button_bg_position_x),
+        var(--color-gold) var(--gold_button_bg_position_x)
+    );
+    animation: 0.3s ease-out 1;
+    animation-fill-mode: forwards;
+    animation-name: gold_button_slide_init;
+    @apply rounded-xl p-2 select-none;
+}
+
+.slick_gold_button:hover {
+    animation-name: gold_button_slide;
+}
+
+@keyframes gold_button_slide {
+    0% {
+        --gold_button_bg_position_x: 10%;
+    }
+
+    100% {
+        --gold_button_bg_position_x: 70%;
+    }
+}
+
+@keyframes gold_button_slide_init {
+    0% {
+        --gold_button_bg_position_x: 70%;
+    }
+
+    100% {
+        --gold_button_bg_position_x: 10%;
+    }
+}
+
+@keyframes fade_in_up {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.animation_fade_in_up {
+    animation: 1.5s fade_in_up;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in.in-view {
+    transform: translateY(0%);
+    opacity: 1;
+}
