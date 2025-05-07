@@ -1,0 +1,61 @@
+.link_svg_base {
+    fill: black;
+    transition-timing-function: ease-out;
+    transition: all;
+    transition-duration: 250ms;
+    @apply mx-auto;
+}
+
+#github_svg:hover {
+    opacity: 0.5;
+}
+
+#email_svg:hover {
+    fill: #ea4335;
+}
+
+#linkedin_svg:hover {
+    fill: #0a66c2;
+}
+
+@property --resume_button_bg_pos {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 10%;
+}
+
+.resume_button {
+    background: linear-gradient(
+        120deg,
+        var(--color-gold) var(--resume_button_bg_pos),
+        var(--color-canary) var(--resume_button_bg_pos)
+    );
+    animation: 0.3s ease-out 1;
+    animation-fill-mode: forwards;
+    animation-name: resume_button_slide_init;
+    @apply mx-auto;
+}
+
+.resume_button:hover {
+    animation-name: resume_button_slide;
+}
+
+@keyframes resume_button_slide {
+    0% {
+        --resume_button_bg_pos: 10%;
+    }
+
+    100% {
+        --resume_button_bg_pos: 70%;
+    }
+}
+
+@keyframes resume_button_slide_init {
+    0% {
+        --resume_button_bg_pos: 70%;
+    }
+
+    100% {
+        --resume_button_bg_pos: 10%;
+    }
+}

@@ -96,14 +96,11 @@ export class GithubAPI {
                     response.json().then((data) => {
                         if ("stats" in data) {
                             this.commit_json = data;
-                            console.log("using net", data);
                         } else {
                             this.localLoadCommitJSON();
-                            console.log("using local", data);
                         }
                         this.gh_api_json = this.generateAPIJSON();
                         this.localStoreCommitJSON();
-                        console.log(this.commit_json);
                     });
                 })
                 .catch((err) => {
@@ -116,18 +113,15 @@ export class GithubAPI {
         }
     }
     private localStoreGHAPIJSON() {
-        console.log("Storing local GHAPIJSON", this.user_events_json);
         this.storeJSON(this.gh_api_local_storage_key, this.user_events_json);
     }
     private localLoadGHAPIJSON() {
-        console.log("using local data for gh_api_json");
         this.user_events_json = this.loadJSON(this.gh_api_local_storage_key);
     }
     private localStoreCommitJSON() {
         this.storeJSON(this.commit_local_storage_key, this.commit_json);
     }
     private localLoadCommitJSON() {
-        console.log("using local data for commit_json");
         this.commit_json = this.loadJSON(this.commit_local_storage_key);
     }
     private storeJSON(key: string, object: JSON | githubAPIJSON | JSON[]) {
@@ -151,7 +145,7 @@ export class GithubAPI {
     ): string {
         if (Object.keys(push_event_json).length != 0) {
             let ret = this.gh_api_base_url + "/repos";
-            console.log("repo", push_event_json);
+
             this.repo_name = push_event_json.repo.name;
             ret += "/" + push_event_json.repo.name;
             ret += "/commits";

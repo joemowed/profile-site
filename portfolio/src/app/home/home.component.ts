@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { RecentCommitsComponent } from "../recent-commits/recent-commits.component";
 import { LearnByDoingComponent } from "../learn-by-doing/learn-by-doing.component";
 import { EducationComponent } from "../education/education.component";
+import { FooterComponent } from "../footer/footer.component";
+import { PersonalLinksComponent } from "../personal-links/personal-links.component";
 
 @Component({
     selector: "app-home",
@@ -9,6 +11,8 @@ import { EducationComponent } from "../education/education.component";
         RecentCommitsComponent,
         LearnByDoingComponent,
         EducationComponent,
+        FooterComponent,
+        PersonalLinksComponent,
     ],
     templateUrl: "./home.component.html",
     styleUrl: "./home.component.css",

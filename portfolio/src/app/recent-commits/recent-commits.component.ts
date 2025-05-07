@@ -10,7 +10,6 @@ import { GithubCommitCardComponent } from "../github-commit-card/github-commit-c
 export class RecentCommitsComponent {
     ngAfterViewInit() {
         const elements = document.querySelectorAll(".fade-in");
-        console.log(elements);
 
         const observer = new IntersectionObserver(
             (entries) => {
