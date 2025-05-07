@@ -6,6 +6,29 @@
         <base href="/" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.0/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyCuZPvSaWfxFU3OdpTRbeeDH156oZKd5kY",
+                authDomain: "jgm-portfolio.firebaseapp.com",
+                projectId: "jgm-portfolio",
+                storageBucket: "jgm-portfolio.firebasestorage.app",
+                messagingSenderId: "542571058915",
+                appId: "1:542571058915:web:ea46f4c9c8c5508fc997d6",
+                measurementId: "G-WJHNQ6410Q",
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        </script>
     </head>
 
     <body class="bg-eerie font-inter">
