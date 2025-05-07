@@ -1,14 +1,16 @@
 <div
-    class="fade-in font-inter bg-timber mx-auto flex min-h-[10rem] w-full flex-col items-center rounded-lg py-4"
+    class="fade-in font-inter bg-timber mx-auto flex min-h-[10rem] w-[95vw] flex-col items-center rounded-lg py-4 lg:w-full"
 >
     @if (gh.gh_api_json.name) {
         <p class="text-center"></p>
         <p class="font-inter text-center text-2xl font-bold">
             {{ gh.gh_api_json.repo_name }}
         </p>
-        <p class="text-center text-xl">
+        <p class="mb-2 text-center text-xl">
             {{ gh.gh_api_json.date }}
-            <span class="italic">({{ gh.gh_api_json.time_elapsed }} ago)</span>
+            <span class="italic"
+                ><br />({{ gh.gh_api_json.time_elapsed }} ago)</span
+            >
         </p>
         <div class="flex">
             <p class="ml-auto text-xl font-bold text-green-500">

@@ -1,0 +1,98 @@
+<div class="calculator_component_bg pt-8">
+    <div
+        class="font-inter flex flex-col items-center justify-center lg:flex-row lg:gap-x-30"
+    >
+        <div>
+            <img src="calculator/trifecta.jpg" class="mt-4 px-2 lg:w-[60rem]" />
+            <p class="text-canary mt-2 text-center text-lg font-light italic">
+                Figure {{ trifecta_figure_num }}: The (3) PCBs used in the
+                design
+            </p>
+        </div>
+        <div
+            class="order-first flex w-fit flex-col items-center lg:order-none lg:max-w-[60%]"
+        >
+            <p class="text-gold my-4 text-center text-4xl font-bold">
+                Custom Calculator
+            </p>
+            <p class="mx-4 text-lg text-white">
+                Custom calculator designed in Altium designer, manufactured by
+                JLCPCB, and hand-assembled using microsoldering tools.
+            </p>
+            <div
+                class="mt-4 flex h-fit w-fit flex-col items-center justify-center"
+            >
+                <img
+                    class="object-within lg: aspect-[1532/1741] h-fit max-h-[40vh] w-fit lg:max-w-[30vw]"
+                    src="calculator/bodge.jpg"
+                />
+                <p
+                    class="text-canary mt-2 text-center text-lg font-light italic"
+                >
+                    Figure {{ bodge_wire_figure_num }}: Bodge wire across 0402
+                    capacitor
+                </p>
+            </div>
+            <p class="mx-4 mt-4 text-lg text-white lg:max-w-[40rem]">
+                Utilized Altium's multi-board features to reduce errors when
+                connecting the 3 boards (mainboard, keyboard, displayboard)
+                together. Utilized STM32 processor, programmed via a J-Link and
+                OpenOCD.
+            </p>
+        </div>
+    </div>
+    <div
+        class="font-inter mb-4 grid items-center justify-center pb-4 lg:grid-cols-2 lg:grid-rows-1 lg:gap-x-10"
+    >
+        <div>
+            <img
+                src="calculator/schematic.png"
+                class="mt-4 px-2 lg:w-[60rem]"
+            />
+            <p class="text-canary mt-2 text-center text-lg font-light italic">
+                Figure 3: Calculator mainboard power supply schematic
+            </p>
+        </div>
+        <div
+            class="mx-auto flex w-fit flex-col items-center justify-center lg:max-w-[60%]"
+        >
+            <div class="mt-4 h-fit w-fit">
+                <img
+                    class="object-within lg: aspect-[1532/1741] h-fit max-h-[40vh] w-fit lg:max-w-[30vw]"
+                    src="calculator/mainboard.jpg"
+                />
+                <p
+                    class="text-canary mt-2 text-center text-lg font-light italic"
+                >
+                    Figure 4: Calculator mainboard
+                </p>
+            </div>
+            <a
+                title="Download calculator schematic PDF"
+                href="calculator/Calculator%20Schematic.pdf"
+                class="slick_gold_button my-2 text-2xl lg:mt-10"
+                download="Resume Joe Maloney"
+                download
+                target="_blank"
+            >
+                Download schematic PDF
+            </a>
+        </div>
+    </div>
+    <!-- <div class="mx-auto"> -->
+    <!--     <div class="mt-4 h-fit w-fit"> -->
+    <!--         <img -->
+    <!--             class="object-within h-fit max-h-[40vh] w-fit lg:max-w-[30vw]" -->
+    <!--             src="calculator/schematic.png" -->
+    <!--         /> -->
+    <!--         <p class="text-canary mt-2 text-center text-lg font-light italic"> -->
+    <!--             Figure 3:  -->
+    <!--         </p> -->
+    <!--     </div> -->
+    <!--     <p -->
+    <!--         class="text-canary mx-auto mt-2 text-center text-lg font-light italic" -->
+    <!--     > -->
+    <!--         Figure 3: PCB Layout (EAGLE) -->
+    <!--     </p> -->
+    <!-- </div> -->
+</div>
