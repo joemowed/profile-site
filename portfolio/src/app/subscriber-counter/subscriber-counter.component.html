@@ -1,0 +1,55 @@
+<div class="subscriber_counter_bg">
+    <div
+        class="font-inter flex flex-col items-center justify-center lg:flex-row lg:gap-x-30"
+    >
+        <div class="flex w-fit flex-col items-center lg:max-w-[60%]">
+            <p class="text-gold my-4 text-center text-4xl font-bold">
+                Subscriber Counter
+            </p>
+            <p class="mx-4 text-lg text-white">
+                Subscriber counter IOT device, using google firebase for backend
+                services, and an ESP32 for device logic.
+            </p>
+            <div class="mt-4 h-fit w-fit">
+                <img
+                    class="h-fit w-fit lg:w-[30vw]"
+                    src="subscriber-counter/counter.png"
+                />
+                <p
+                    class="text-canary mt-2 text-center text-lg font-light italic"
+                >
+                    Figure 1: Counter Device
+                </p>
+            </div>
+            <p class="mx-4 mt-4 text-lg text-white lg:max-w-[40rem]">
+                System architecture simplifys device requirements, the device
+                only displays a number fetched from a database according to
+                device ID. The value of the number depends only on
+                configurations made to the easy to update web configurator.
+                Being web based, adding new features (e.g. support for new
+                social media platforms, a new premium subscription with faster
+                update rate) is easy, and does not require an OTA update.
+            </p>
+        </div>
+        <div>
+            <img
+                src="subscriber-counter/diagram.svg"
+                class="mt-4 px-2 lg:w-[40rem]"
+            />
+            <p class="text-canary mt-2 text-center text-lg font-light italic">
+                Figure 2: System Architecture
+            </p>
+        </div>
+    </div>
+    <div class="mx-auto">
+        <img
+            src="subscriber-counter/layout.png"
+            class="mx-auto mt-4 w-[85%] px-2"
+        />
+        <p
+            class="text-canary mx-auto mt-2 text-center text-lg font-light italic"
+        >
+            Figure 3: PCB Layout (EAGLE)
+        </p>
+    </div>
+</div>
