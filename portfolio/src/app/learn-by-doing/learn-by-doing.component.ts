@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from "@angular/core";
+import { OnInit, Component, AfterViewInit } from "@angular/core";
 
 @Component({
     selector: "app-learn-by-doing",
@@ -7,6 +7,7 @@ import { Component, AfterViewInit } from "@angular/core";
     styleUrl: "./learn-by-doing.component.css",
 })
 export class LearnByDoingComponent {
+    public is_mobile: boolean = false;
     ngAfterViewInit() {
         const elements = document.querySelectorAll(".fade-in");
 
@@ -27,5 +28,8 @@ export class LearnByDoingComponent {
         elements.forEach((element) => {
             observer.observe(element);
         });
+    }
+    ngOnInit() {
+        if (window.screen.width <= 1024) this.is_mobile = true;
     }
 }

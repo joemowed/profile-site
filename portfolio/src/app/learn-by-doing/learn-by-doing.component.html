@@ -1,10 +1,19 @@
 <div class="mb-4 w-full lg:relative">
-    <img
-        src="home/desk-wide-view.png"
-        width="2000"
-        height="707"
-        class="w-full opacity-70"
-    />
+    @if (is_mobile) {
+        <img
+            src="home/desk-wide-view-mobile.png"
+            width="1207"
+            height="695"
+            class="w-full opacity-70"
+        />
+    } @else {
+        <img
+            src="home/desk-wide-view.png"
+            width="2000"
+            height="707"
+            class="w-full opacity-70"
+        />
+    }
     <p
         class="fade-in text-bold lg:font-dosis text-canary text-center text-3xl lg:absolute lg:bottom-[10%] lg:left-0 lg:pl-[10%] lg:text-7xl"
     >

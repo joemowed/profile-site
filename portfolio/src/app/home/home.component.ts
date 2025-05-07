@@ -4,6 +4,7 @@ import { LearnByDoingComponent } from "../learn-by-doing/learn-by-doing.componen
 import { EducationComponent } from "../education/education.component";
 import { FooterComponent } from "../footer/footer.component";
 import { PersonalLinksComponent } from "../personal-links/personal-links.component";
+import { SubscriberCounterComponent } from "../subscriber-counter/subscriber-counter.component";
 
 @Component({
     selector: "app-home",
@@ -13,6 +14,7 @@ import { PersonalLinksComponent } from "../personal-links/personal-links.compone
         EducationComponent,
         FooterComponent,
         PersonalLinksComponent,
+        SubscriberCounterComponent,
     ],
     templateUrl: "./home.component.html",
     styleUrl: "./home.component.css",
