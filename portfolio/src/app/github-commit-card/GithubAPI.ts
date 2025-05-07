@@ -4,7 +4,11 @@ export class GithubAPI {
     readonly gh_api_base_url: string = "https://api.github.com";
     readonly user_events_url = this.gh_api_base_url + "/users/joemowed/events";
     readonly GH_API_MAX_RETRIES = 5;
+    readonly gh_api_local_storage_key =
+        "alkfjdlskjfadslkjflkasjflkhaoi3oien328y2089t2h3oisd";
     private commit_number: number = 0;
+    private commit_local_storage_key =
+        this.gh_api_local_storage_key + this.commit_number;
     private box_count: number = 0;
 
     private user_events_json: JSON[] = [];
@@ -19,12 +23,13 @@ export class GithubAPI {
     constructor(commit_number: number, box_count: number) {
         this.box_count = box_count;
         this.commit_number = commit_number;
+        this.commit_local_storage_key =
+            this.gh_api_local_storage_key + this.commit_number;
         this.fetchUserEvents();
     }
 
     public fetchUserEvents() {
         if (this.user_events_json.length != 0) {
-            console.log(this.user_events_json);
             return;
         }
         if (this.user_events_retry_count >= this.GH_API_MAX_RETRIES) {
@@ -34,10 +39,14 @@ export class GithubAPI {
         if (!this.user_events_fetch_pending) {
             this.user_events_fetch_pending = true;
             fetch(this.user_events_url)
-                .then((data) => {
-                    data.json().then((data) => {
+                .then((response) => {
+                    response.json().then((data) => {
                         this.user_events_json = this.filterUserEvents(data);
+                        if (!this.user_events_json) {
+                            this.localLoadGHAPIJSON();
+                        }
                         this.fetchCommit();
+                        this.localStoreGHAPIJSON();
                     });
                 })
                 .catch((err) => {
@@ -52,9 +61,12 @@ export class GithubAPI {
     }
 
     private filterUserEvents(data: any) {
-        return data.filter((element: any) => {
-            return element.type == "PushEvent";
-        });
+        if ("length" in data) {
+            return data.filter((element: any) => {
+                return element.type == "PushEvent";
+            });
+        }
+        return null;
     }
 
     private fetchCommit() {
@@ -66,6 +78,7 @@ export class GithubAPI {
         }
         if (!this.user_events_json) {
             console.error("user event JSON contains no events");
+            return;
         }
         if (this.user_events_json.length <= this.commit_number) {
             console.error(
@@ -79,12 +92,20 @@ export class GithubAPI {
             );
             this.commit_fetch_pending = true;
             fetch(commit_fetch_url)
-                .then((response) =>
+                .then((response) => {
                     response.json().then((data) => {
-                        this.commit_json = data;
+                        if ("stats" in data) {
+                            this.commit_json = data;
+                            console.log("using net", data);
+                        } else {
+                            this.localLoadCommitJSON();
+                            console.log("using local", data);
+                        }
                         this.gh_api_json = this.generateAPIJSON();
-                    }),
-                )
+                        this.localStoreCommitJSON();
+                        console.log(this.commit_json);
+                    });
+                })
                 .catch((err) => {
                     console.error("Commit fetch error", err);
                     this.commit_retry_count++;
@@ -94,17 +115,50 @@ export class GithubAPI {
                 });
         }
     }
-
+    private localStoreGHAPIJSON() {
+        console.log("Storing local GHAPIJSON", this.user_events_json);
+        this.storeJSON(this.gh_api_local_storage_key, this.user_events_json);
+    }
+    private localLoadGHAPIJSON() {
+        console.log("using local data for gh_api_json");
+        this.user_events_json = this.loadJSON(this.gh_api_local_storage_key);
+    }
+    private localStoreCommitJSON() {
+        this.storeJSON(this.commit_local_storage_key, this.commit_json);
+    }
+    private localLoadCommitJSON() {
+        console.log("using local data for commit_json");
+        this.commit_json = this.loadJSON(this.commit_local_storage_key);
+    }
+    private storeJSON(key: string, object: JSON | githubAPIJSON | JSON[]) {
+        if (Object.keys(object).length == 0) {
+            return;
+        }
+        const json_str = JSON.stringify(object);
+        localStorage.setItem(key, json_str);
+    }
+    private loadJSON(key: string) {
+        let ret = {} as JSON;
+        const json_str = localStorage.getItem(key);
+        if (json_str) {
+            return JSON.parse(json_str);
+        }
+        return ret;
+    }
     private generateCommitFetchURL(
         push_event_json: any,
         payload_commit: number,
     ): string {
-        let ret = this.gh_api_base_url + "/repos";
-        this.repo_name = push_event_json.repo.name;
-        ret += "/" + push_event_json.repo.name;
-        ret += "/commits";
-        ret += "/" + push_event_json.payload.commits[payload_commit].sha;
-        return ret;
+        if (Object.keys(push_event_json).length != 0) {
+            let ret = this.gh_api_base_url + "/repos";
+            console.log("repo", push_event_json);
+            this.repo_name = push_event_json.repo.name;
+            ret += "/" + push_event_json.repo.name;
+            ret += "/commits";
+            ret += "/" + push_event_json.payload.commits[payload_commit].sha;
+            return ret;
+        }
+        return "";
     }
 
     private generateAPIJSON(): githubAPIJSON {
@@ -126,9 +180,11 @@ export class GithubAPI {
         ret.name = this.commit_json.sha.slice(0, 7);
         ret.repo_name = this.repo_name;
         ret.box_colors = this.generateBoxColors(additions, deletions);
-        const max_message_length = 30;
-        if (this.commit_json.message.length > max_message_length)
-            ret.message = this.commit_json.message.slice(0, max_message_length);
+        const max_message_length = 35;
+        ret.message = this.commit_json.commit.message;
+        if (this.commit_json.commit.message.length > max_message_length) {
+            ret.message = ret.message!.slice(0, max_message_length) + "...";
+        }
         return ret;
     }
     private generateBoxColors(
