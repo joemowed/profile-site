@@ -7,6 +7,7 @@ import { PersonalLinksComponent } from "../personal-links/personal-links.compone
 import { SubscriberCounterComponent } from "../subscriber-counter/subscriber-counter.component";
 import { CalculatorComponent } from "../calculator/calculator.component";
 import { EightBitSoftwareComponent } from "../eight-bit-software/eight-bit-software.component";
+import { ClockComponent } from "../clock/clock.component";
 
 @Component({
     imports: [
@@ -19,6 +20,7 @@ import { EightBitSoftwareComponent } from "../eight-bit-software/eight-bit-softw
         CalculatorComponent,
         EightBitSoftwareComponent,
         CalculatorComponent,
+        ClockComponent,
     ],
     templateUrl: "./home.component.html",
     styleUrl: "./home.component.css",

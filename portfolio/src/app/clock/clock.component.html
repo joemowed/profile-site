@@ -1,0 +1,26 @@
+<div class="clock-bg">
+    <div class="font-inter flex flex-col items-center justify-center lg:flex-row lg:gap-x-30 pb-2">
+        <div class="flex w-fit flex-col items-center lg:max-w-[60%]">
+            <p class="text-gold my-4 text-center text-4xl font-bold">
+                RGB Matrix Clock
+            </p>
+            <div class="mt-4 h-fit w-fit">
+                <img class="h-fit w-fit lg:w-[30vw]" src="clock/clock.jpg" />
+                <p class="text-canary mt-2 text-center text-lg font-light italic">
+                    Figure 1: Clock Display
+                </p>
+            </div>
+        </div>
+        <div class="flex w-fit flex-col items-center lg:max-w-[60%]">
+            <img src="clock/clock_pcb.jpg" class="mt-4 px-2 lg:w-[40rem]" />
+            <p class="text-canary mt-2 text-center text-lg font-light italic">
+                Figure 2: Custom Clock Controller
+            </p>
+            <p class="mx-4 mt-4 text-lg text-white lg:max-w-[40rem]">
+                Designed clock control PCB with Atmel SAMD51 MCU, and I<sup>2</sup>C based RTC chip. Wrote firmware
+                including bootloader and display driver with
+                minimal HAL usage to better understand bare metal programming. Implements RTC battery backup, and
+                automatic clock-setting via host PC.</p>
+        </div>
+    </div>
+</div>

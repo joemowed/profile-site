@@ -2,7 +2,8 @@ import moment from "moment";
 export class GithubAPI {
     public gh_api_json: githubAPIJSON = {};
     readonly gh_api_base_url: string = "https://api.github.com";
-    readonly user_events_url = this.gh_api_base_url + "/users/joemowed/events";
+    readonly user_events_url =
+        this.gh_api_base_url + "/users/joemowed/events?per_page=10";
     readonly GH_API_MAX_RETRIES = 5;
     readonly gh_api_local_storage_key =
         "alkfjdlskjfadslkjflkasjflkhaoi3oien328y2089t2h3oisd";
@@ -70,14 +71,13 @@ export class GithubAPI {
     }
 
     private fetchCommit() {
-        if (this.commit_json) {
-            return;
-        }
         if (this.commit_retry_count >= this.GH_API_MAX_RETRIES) {
             return;
         }
-        if (!this.user_events_json) {
-            console.error("user event JSON contains no events");
+        if (!this.user_events_json.at(this.commit_number)) {
+            console.error(
+                "user event JSON contains no events for this commit number",
+            );
             return;
         }
         if (this.user_events_json.length <= this.commit_number) {
@@ -87,7 +87,7 @@ export class GithubAPI {
         }
         if (!this.commit_fetch_pending) {
             const commit_fetch_url = this.generateCommitFetchURL(
-                this.user_events_json[this.commit_number],
+                this.user_events_json.at(this.commit_number),
                 0,
             );
             this.commit_fetch_pending = true;
@@ -143,13 +143,15 @@ export class GithubAPI {
         push_event_json: any,
         payload_commit: number,
     ): string {
+        if (!push_event_json) {
+            console.error("Push Event JSON non-existent.");
+        }
         if (Object.keys(push_event_json).length != 0) {
             let ret = this.gh_api_base_url + "/repos";
-
             this.repo_name = push_event_json.repo.name;
             ret += "/" + push_event_json.repo.name;
             ret += "/commits";
-            ret += "/" + push_event_json.payload.commits[payload_commit].sha;
+            ret += "/" + push_event_json.payload.head;
             return ret;
         }
         return "";
